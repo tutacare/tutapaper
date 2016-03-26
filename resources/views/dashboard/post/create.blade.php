@@ -6,7 +6,7 @@
 		<div class="col-md-12">
       <h2>Posting</h2>
       <hr />
-			<div class="panel panel-danger">
+			<div class="panel panel-default">
 				<div class="panel-heading">Buat Postingan Baru</div>
 				<div class="panel-body">
 
@@ -20,7 +20,7 @@
 						</div>
 	        </div>
 	        @endif
-
+					<div class="col-md-9">
           {!! Form::open(array('url' => 'dashboard/post')) !!}
 
               <div class="form-group">
@@ -35,7 +35,16 @@
           {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
           <a class="btn btn-small btn-warning" href="{{ URL::to('dashboard/category') }}">Batal</a>
           {!! Form::close() !!}
-
+					</div>
+					<div class="col-md-3">
+						<div class="panel panel-default">
+							<div class="panel-heading">Kategori</div>
+							<div class="panel-body">
+						fdfds
+						</div>
+							</div>
+							</div>
+					</div>
 				</div>
 			</div>
 		</div>
