@@ -34,13 +34,16 @@
 
           {!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
           <a class="btn btn-small btn-warning" href="{{ URL::to('dashboard/category') }}">Batal</a>
-          {!! Form::close() !!}
+
 					</div>
 					<div class="col-md-3">
 						<div class="panel panel-default">
 							<div class="panel-heading">Kategori</div>
 							<div class="panel-body">
-						fdfds
+								@foreach($category as $value)
+									{!! Form::checkbox('category[]', $value->id); !!} {{$value->category}}<br />
+								@endforeach
+								{!! Form::close() !!}
 						</div>
 							</div>
 							</div>

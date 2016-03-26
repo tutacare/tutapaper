@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Post;
-use Input;
+use App\Post, App\Category;
+use App\CategoryPost;
+use Input, Session, Redirect;
 
 class PostController extends Controller
 {
@@ -29,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('dashboard.post.create');
+        $category = Category::all();
+        return view('dashboard.post.create', ['category' => $category]);
     }
 
     /**
@@ -41,14 +43,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
       $post = new Post;
-      $post->category_id = Input::get('category_id');
       $post->title = Input::get('title');
       $post->slug = str_slug(Input::get('title'), "-");
       $post->content = Input::get('content');
       $post->save();
+      foreach(Input::get('category') as $value) {
+      $category_post = new CategoryPost;
+      $category_post->post_id = $post->id;
+      $category_post->category_id = $value;
+      $category_post->save();
+      }
 
       Session::flash('message', 'Menambah posting sukses!');
       return Redirect::to('dashboard/post');
+
     }
 
     /**
