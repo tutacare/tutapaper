@@ -13,7 +13,7 @@ class BerandaController extends Controller
 {
     function beranda()
     {
-      $post = Post::orderBy(DB::raw('RAND()'))->take(3)->get();
+      $post = Post::orderBy('id', 'desc')->take(3)->get();
       return view('beranda.beranda', ['post' => $post]);
     }
 }
